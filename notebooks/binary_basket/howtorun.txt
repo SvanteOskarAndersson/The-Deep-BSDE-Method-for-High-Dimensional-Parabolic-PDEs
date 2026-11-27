@@ -1,0 +1,40 @@
+In this folder:
+
+- config.py sets all shared parameters so the code is less error prone
+
+- mc.py contains functions for Monte Carlo: convergence, price and plots
+
+- nets.py contains the networks tested, they correspond to the networks
+  a, b and C in the paper "Machine Learning for semi linear PDEs"
+
+- payoffs.py contains path sampling, payoffs and 
+  the exact geometric basket solution
+
+- training.py code related to training the networks
+
+- run.py : the central program, runs training of the networks or MC simulation
+  with instructions speficied w. argparse (below)
+
+
+INSTRUCTION on how to run run.py w. argparse:
+
+in terminal: python3 run.py + args 
+
+The args:
+
+--model A B C: network(s) to train
+--payoff "aon" or "geo" : arithmetic / geometric basket option:
+--d : number of assets (integer)
+--K : strike (float)
+--n_iter :  training iterations (int)
+--h : hidden layers (int)
+--seeds : nr. of different seeds (int)
+
+
+Example:
+python run.py train --model A B C --payoff geo --d 1
+runs all three models A, B and C on geometric basket options in one dimension
+
+python run.py compare --model A B C --payoff geo --seeds 5
+compares model A B and C using the geometric basket options
+across 5 different seeds.
